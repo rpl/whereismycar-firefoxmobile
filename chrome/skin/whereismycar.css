@@ -1,0 +1,25 @@
+#whereismycar-toolbarbutton {
+  list-style-image: url(chrome://whereismycar/skin/images/icon32.png);
+}
+
+#whereismycar-icon {
+  list-style-image: url(chrome://whereismycar/skin/images/icon32.png);
+}
+
+#whereismycar-icon {
+  margin-right: 5px;
+}
+
+.whereismycar-panel {
+  -moz-box-pack: center;
+  -moz-box-align: center;
+}
+
+#whereismycar-throbber {
+  list-style-image: url(chrome://browser/skin/images/throbber.png);
+  margin-right: 5px;
+}
+
+
+
+

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://whereismycar/skin/whereismycar.css" type="text/css"?>
+<?xul-overlay href="chrome://whereismycar/content/overlayWhereismycarContainer.xul"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://whereismycar/locale/whereismycar.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+         id="whereismycar-overlay"
+         windowtype="whereismycar:overlay"
+				 onload="load();">
+         
+  <script type="application/javascript" src="chrome://whereismycar/content/overlayFennec.js" />    
+  
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="whereismycar-stringbundle" src="chrome://whereismycar/locale/whereismycar.properties" />  
+  </stringbundleset>
+  
+  <commandset id="mainCommandSet">
+    <command id="whereismycar-command" label="&whereismycar.label;" oncommand="Whereismycar.show();" /> 
+  </commandset>
+  
+  <keyset id="mainKeyset">
+    <key id="whereismycar-key" key="&whereismycar.key;" modifiers="accel" command="whereismycar-command" />
+  </keyset>
+      
+  <vbox id="browser-controls">  
+   <toolbarbutton id="whereismycar-toolbarbutton" class="button-dark" command="whereismycar-command" insertbefore="tool-panel-open" />   
+  </vbox>
+  
+  <stack flex="1" id="stack">
+    <vbox id="whereismycar-container" hidden="true" class="panel-dark window-width" insertbefore="panel-container"/>
+  </stack>
+</overlay>

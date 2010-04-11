@@ -1,0 +1,5 @@
+<!ENTITY whereismycar.name                             "Where Is My Car?">
+<!ENTITY whereismycar.label                            "&whereismycar.name;">
+<!ENTITY whereismycar.key                              "s">
+<!ENTITY whereismycar.back                             "Back">
+<!ENTITY whereismycar.loading                          "Loading...">

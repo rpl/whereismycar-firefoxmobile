@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://whereismycar/skin/whereismycar.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://whereismycar/locale/whereismycar.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+				 xmlns:html="http://www.w3.org/1999/xhtml"
+         id="whereismycar-content">
+
+  <vbox id="whereismycar-container" hidden="true" class="panel-dark window-width">
+    <hbox id="whereismycar-header" class="panel-header" align="center">
+      <image id="whereismycar-icon" />
+      <label value="&whereismycar.label;" flex="1" />
+      <spacer flex="1" />
+      <button id="whereismycar-close" class="button-dark" label="&whereismycar.back;" oncommand="Whereismycar.hide();"/>
+    </hbox>
+    <deck id="whereismycar-deck" flex="1">
+      <vbox id="whereismycar-loading" class="whereismycar-panel panel-dark">
+        <hbox class="whereismycar-panel">
+          <image id="whereismycar-throbber" />
+          <description value="&whereismycar.loading;" />
+        </hbox>
+      </vbox>
+      <vbox id="whereismycar-leave" class="panel-dark">
+        <box id="whereismycar-leave-view" flex="1" rows="4" orient="vertical"
+										 template="template-leave-view" 
+										 datasources="#whereismycar-leave-data"
+										 ref="*" querytype="xml">
+        </box>
+      </vbox>
+      <vbox id="whereismycar-getdirections" class="panel-dark">
+        <box id="whereismycar-getdirections" flex="1" rows="4" orient="vertical"
+										 template="template-getdirections-view" 
+										 datasources="#whereismycar-getdirections-data"
+										 ref="*" querytype="xml">
+        </box>
+      </vbox>
+			<box id="whereismycar-template-data" hidden="true">
+				<data id="whereismycar-views-data" xmlns="">
+					<mode label="Leave" value="1"/>
+					<mode label="Get Directions" value="2"/>
+				</data>
+				<data id="whereismycar-leave-data" xmlns="">
+					<position>
+						<address value="Via XYZ, 20"/>
+						<city value="Lecce"/>
+						<country value="IT"/>
+						<latlong value="70,-43"/>
+						<note value="blah blah blah"/>
+						<static-map-url value="chrome://whereismycar/skin/images/loading_map.png"/>
+					</position>
+				</data>
+				<data id="whereismycar-getdirections-data" xmlns="">
+					<directions>
+						<map>
+							<static-map-url value="chrome://whereismycar/skin/images/loading_map.png"/>
+							<interactive-map-url value=""/>
+							<print-directions-url value=""/>
+						</map>
+						<from>
+							<address value="Via XYZ, 20"/>
+							<city value="Lecce"/>
+							<country value="IT"/>
+							<latlong value="70,-43"/>
+							<distance value="0"/>
+							<direction value="ARRIVED"/>
+						</from>
+						<to>
+							<address value="Via XYZ, 20"/>
+							<city value="Lecce"/>
+							<country value="IT"/>
+							<latlong value="70,-43"/>
+							<note value="blah blah blah"/>
+						</to>
+					</directions>
+				</data>
+				<templates>
+					<template id="template-supported-view-menupopup">
+						<query expr="mode" />
+						<action>
+							<menuitem uri="?" label="?label" value="?value"/>
+						</action>
+					</template>
+					<template id="template-leave-view">
+						<query expr="position">
+							<assign var="?address" expr="address/@value"/>
+							<assign var="?city" expr="city/@value"/>
+							<assign var="?country" expr="country/@value"/>
+							<assign var="?latlong" expr="latlong/@value"/>
+							<assign var="?static-map-url" expr="static-map-url/@value"/>
+							<assign var="?note" expr="note/@value"/>
+						</query>
+						<action>
+							<vbox uri="?" class="whereismycar-leave-vbox" flex="1" data-key="?key">
+								<grid class="whereismycar-leave-metadata-grid">
+									<columns>  
+										<column/>  
+										<column flex="1"/>  
+									</columns>  
+									<rows>  
+										<row align="center">  
+											<label value="Address:"/>  
+											<textbox value="?address"/>  
+										</row>  
+										<row align="center">  
+											<label value="City:"/>  
+											<textbox value="?city - ?country"/>  
+										</row>
+										<row align="center">  
+											<label value="Lat-Long:"/>  
+											<textbox value="?latlong"/>  
+										</row>
+										<row align="start">  
+											<label value="Note:"/>  
+											<textbox value="?note" multiline="true"/>  
+										</row>  
+									</rows>
+								</grid>  
+								<grid class="whereismycar-leave-buttons-grid" flex="1">
+									<columns>  
+										<column flex="1"/>  
+										<column flex="1"/>  
+									</columns>  
+									<rows>
+										<row flex="1">
+											<vbox flex="1">
+												<button label="Leave" class="button-dark" flex="1"/>
+												<button label="Cancel" class="button-dark" flex="1"/>
+											</vbox>
+											<box style="padding-right: 5px" flex="1">
+												<button class="button-dark" flex="1">
+													<image class="whereismycar-map" src="?static-map-url"/>
+												</button>
+											</box>
+										</row>
+									</rows>
+								</grid>
+							</vbox>
+						</action>
+					</template>
+					<template id="template-getdirections-view">
+						<query expr="directions">
+							<assign var="?from-address" expr="from/address/@value"/>
+							<assign var="?from-city" expr="from/city/@value"/>
+							<assign var="?from-country" expr="from/country/@value"/>
+							<assign var="?from-latlong" expr="from/latlong/@value"/>
+							<assign var="?from-distance" expr="from/distance/@value"/>
+							<assign var="?from-direction" expr="from/direction/@value"/>
+							<assign var="?to-address" expr="to/address/@value"/>
+							<assign var="?to-city" expr="to/city/@value"/>
+							<assign var="?to-country" expr="to/country/@value"/>
+							<assign var="?to-latlong" expr="to/latlong/@value"/>
+							<assign var="?to-note" expr="to/note/@value"/>
+							<assign var="?static-map-url" expr="map/static-map-url/@value"/>
+							<assign var="?interactive-map-url" expr="map/interactive-map-url/@value"/>
+							<assign var="?print-directions-url" expr="map/print-directions-url/@value"/>
+						</query>
+						<action>
+							<vbox uri="?" class="whereismycar-getdirections-vbox" flex="1" data-key="?key">
+								<grid class="whereismycar-getdirections-metadata-grid">
+									<columns>  
+										<column flex="1"/>  
+										<column flex="1"/>  
+									</columns>  
+									<rows>  
+										<row flex="1">
+											<groupbox>
+												<caption label="From"/>
+ 												<grid class="whereismycar-from-grid">
+													<columns>
+														<column/>  
+														<column flex="1"/>  
+													</columns>
+													<rows>
+														<row align="center">  
+															<label value="Address:"/>  
+															<textbox value="?from-address"/>  
+														</row>  
+														<row align="center">  
+															<label value="City:"/>  
+															<textbox value="?from-city - ?from-country"/>  
+														</row>
+														<row align="center">  
+															<label value="Lat-Long:"/>  
+															<textbox value="?from-latlong"/>  
+														</row>
+														<row align="center">  
+															<label value="Distance:"/>  
+															<textbox value="?from-distance"/>  
+														</row>
+														<row align="center">  
+															<label value="Direction:"/>  
+															<textbox value="?from-direction"/>  
+														</row>
+													</rows>
+												</grid>
+											</groupbox>
+											<groupbox>
+												<caption label="To"/>
+ 												<grid class="whereismycar-to-grid">
+													<columns>
+														<column/>  
+														<column flex="1"/>  
+													</columns>
+													<rows>
+														<row align="center">  
+															<label value="Address:"/>  
+															<textbox value="?to-address"/>  
+														</row>  
+														<row align="center">  
+															<label value="City:"/>  
+															<textbox value="?to-city - ?to-country"/>  
+														</row>
+														<row align="center">  
+															<label value="Lat-Long:"/>  
+															<textbox value="?to-latlong"/>  
+														</row>
+														<row align="start">  
+															<label value="Note:"/>  
+															<textbox value="?to-note" multiline="true"/>  
+														</row>
+													</rows>
+												</grid>
+											</groupbox>
+										</row>
+									</rows>
+								</grid>  
+								<grid class="whereismycar-getdirections-buttons-grid" flex="1">
+									<columns>  
+										<column flex="1"/>  
+										<column flex="1"/>  
+									</columns>  
+									<rows>
+										<row flex="1">
+											<vbox flex="1">
+												<button label="Get Directions" class="button-dark" flex="1"/>
+												<button label="Done" class="button-dark" flex="1"/>
+											</vbox>
+											<box style="padding-right: 5px" flex="1">
+												<button class="button-dark" flex="1">
+													<image class="whereismycar-map" src="?static-map-url"/>
+												</button>
+											</box>
+										</row>
+									</rows>
+								</grid>
+							</vbox>
+						</action>
+					</template>
+				</templates>
+			</box>
+    </deck>
+  </vbox>
+</overlay>

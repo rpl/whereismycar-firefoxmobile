@@ -1,0 +1,6 @@
+content  whereismycar chrome/content/
+skin     whereismycar classic/1.0 chrome/skin/
+locale   whereismycar en-US chrome/locale/en-US/
+resource whereismycar chrome/jetpack
+
+overlay  chrome://browser/content/browser.xul chrome://whereismycar/content/overlayFennec.xul
