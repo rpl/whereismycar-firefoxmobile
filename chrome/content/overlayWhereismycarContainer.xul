@@ -122,8 +122,8 @@
 									<rows>
 										<row flex="1">
 											<vbox flex="1">
-												<button label="Leave" class="button-dark" flex="1"/>
-												<button label="Cancel" class="button-dark" flex="1"/>
+												<button label="Leave" class="button-dark" flex="1" oncommand="Whereismycar.save();"/>
+												<button label="Cancel" class="button-dark" flex="1" oncommand="Whereismycar.hide();"/>
 											</vbox>
 											<box style="padding-right: 5px" flex="1">
 												<button class="button-dark" flex="1"
@@ -233,7 +233,8 @@
 										<row flex="1">
 											<vbox flex="1">
 												<button label="Get Directions" class="button-dark" flex="1"/>
-												<button label="Done" class="button-dark" flex="1"/>
+												<button label="Done" class="button-dark" flex="1"
+																oncommand="Whereismycar.done();"/>
 											</vbox>
 											<box style="padding-right: 5px" flex="1">
 												<button class="button-dark" flex="1">
