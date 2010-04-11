@@ -39,11 +39,11 @@
 				</data>
 				<data id="whereismycar-leave-data" xmlns="">
 					<position>
-						<address value="Via XYZ, 20"/>
-						<city value="Lecce"/>
-						<country value="IT"/>
-						<latlong value="70,-43"/>
-						<note value="blah blah blah"/>
+						<address value=""/>
+						<city value=""/>
+						<country value=""/>
+						<latlong value=""/>
+						<note value=""/>
 						<static-map-url value="chrome://whereismycar/skin/images/loading_map.png"/>
 					</position>
 				</data>
@@ -55,19 +55,19 @@
 							<print-directions-url value=""/>
 						</map>
 						<from>
-							<address value="Via XYZ, 20"/>
-							<city value="Lecce"/>
-							<country value="IT"/>
-							<latlong value="70,-43"/>
-							<distance value="0"/>
-							<direction value="ARRIVED"/>
+							<address value=""/>
+							<city value=""/>
+							<country value=""/>
+							<latlong value=""/>
+							<distance value=""/>
+							<direction value=""/>
 						</from>
 						<to>
-							<address value="Via XYZ, 20"/>
-							<city value="Lecce"/>
-							<country value="IT"/>
-							<latlong value="70,-43"/>
-							<note value="blah blah blah"/>
+							<address value=""/>
+							<city value=""/>
+							<country value=""/>
+							<latlong value=""/>
+							<note value=""/>
 						</to>
 					</directions>
 				</data>
@@ -108,10 +108,10 @@
 											<label value="Lat-Long:"/>  
 											<textbox value="?latlong"/>  
 										</row>
-										<row align="start">  
+										<!--row align="start">  
 											<label value="Note:"/>  
 											<textbox value="?note" multiline="true"/>  
-										</row>  
+										</row-->  
 									</rows>
 								</grid>  
 								<grid class="whereismycar-leave-buttons-grid" flex="1">
@@ -122,7 +122,7 @@
 									<rows>
 										<row flex="1">
 											<vbox flex="1">
-												<button label="Leave" class="button-dark" flex="1" oncommand="Whereismycar.save();"/>
+												<button label="Save" class="button-dark" flex="1" oncommand="Whereismycar.save();"/>
 												<button label="Cancel" class="button-dark" flex="1" oncommand="Whereismycar.hide();"/>
 											</vbox>
 											<box style="padding-right: 5px" flex="1">
@@ -151,8 +151,8 @@
 							<assign var="?to-latlong" expr="to/latlong/@value"/>
 							<assign var="?to-note" expr="to/note/@value"/>
 							<assign var="?static-map-url" expr="map/static-map-url/@value"/>
-							<assign var="?interactive-map-url" expr="map/interactive-map-url/@value"/>
-							<assign var="?print-directions-url" expr="map/print-directions-url/@value"/>
+							<assign var="?interactive-map-cmd" expr="map/interactive-map-cmd/@value"/>
+							<assign var="?print-directions-cmd" expr="map/print-directions-cmd/@value"/>
 						</query>
 						<action>
 							<vbox uri="?" class="whereismycar-getdirections-vbox" flex="1" data-key="?key">
@@ -184,12 +184,8 @@
 															<textbox value="?from-latlong"/>  
 														</row>
 														<row align="center">  
-															<label value="Distance:"/>  
+															<label value="Distance (m):"/>  
 															<textbox value="?from-distance"/>  
-														</row>
-														<row align="center">  
-															<label value="Direction:"/>  
-															<textbox value="?from-direction"/>  
 														</row>
 													</rows>
 												</grid>
@@ -214,10 +210,14 @@
 															<label value="Lat-Long:"/>  
 															<textbox value="?to-latlong"/>  
 														</row>
-														<row align="start">  
+														<row align="center">  
+															<label value="Direction:"/>  
+															<textbox value="?from-direction"/>  
+														</row>
+														<!--row align="start">  
 															<label value="Note:"/>  
 															<textbox value="?to-note" multiline="true"/>  
-														</row>
+														</row-->
 													</rows>
 												</grid>
 											</groupbox>
@@ -232,12 +232,14 @@
 									<rows>
 										<row flex="1">
 											<vbox flex="1">
-												<button label="Get Directions" class="button-dark" flex="1"/>
+												<button label="Print Directions" class="button-dark" flex="1"
+																oncommand="?print-directions-cmd"/>
 												<button label="Done" class="button-dark" flex="1"
 																oncommand="Whereismycar.done();"/>
 											</vbox>
 											<box style="padding-right: 5px" flex="1">
-												<button class="button-dark" flex="1">
+												<button class="button-dark" flex="1"
+																oncommand="?interactive-map-cmd">
 													<image class="whereismycar-map" src="?static-map-url"/>
 												</button>
 											</box>

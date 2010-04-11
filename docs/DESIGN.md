@@ -31,14 +31,6 @@ Jetpack modules:
   * LEAVE_BUTTON: save position
   * CANCEL_BUTTON: exit without save
 
-Current Step:
-
-* integrate geolocation into getdirection panel
-
-Next Steps:
-
-* integrate maps into getdirections panel
-
 Done Steps:
 
 * planning
@@ -48,6 +40,8 @@ Done Steps:
 * integrate geolocation into leave panel
 * integrate maps into leave panel
 * bootstrap maps module
+* integrate geolocation into getdirection panel
+* integrate maps into getdirections panel
 
 #### Design
 
