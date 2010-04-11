@@ -22,20 +22,16 @@
           <description value="&whereismycar.loading;" />
         </hbox>
       </vbox>
-      <vbox id="whereismycar-leave" class="panel-dark">
-        <box id="whereismycar-leave-view" flex="1" rows="4" orient="vertical"
-										 template="template-leave-view" 
-										 datasources="#whereismycar-leave-data"
-										 ref="*" querytype="xml">
-        </box>
-      </vbox>
-      <vbox id="whereismycar-getdirections" class="panel-dark">
-        <box id="whereismycar-getdirections" flex="1" rows="4" orient="vertical"
-										 template="template-getdirections-view" 
-										 datasources="#whereismycar-getdirections-data"
-										 ref="*" querytype="xml">
-        </box>
-      </vbox>
+      <vbox id="whereismycar-leave" class="panel-dark" 
+						flex="1" rows="4" orient="vertical"
+						template="template-leave-view" 
+						datasources="#whereismycar-leave-data"
+						ref="*" querytype="xml"/>
+      <vbox id="whereismycar-getdirections" class="panel-dark"
+            flex="1" rows="4" orient="vertical"
+						template="template-getdirections-view" 
+						datasources="#whereismycar-getdirections-data"
+						ref="*" querytype="xml"/>
 			<box id="whereismycar-template-data" hidden="true">
 				<data id="whereismycar-views-data" xmlns="">
 					<mode label="Leave" value="1"/>
@@ -89,6 +85,7 @@
 							<assign var="?country" expr="country/@value"/>
 							<assign var="?latlong" expr="latlong/@value"/>
 							<assign var="?static-map-url" expr="static-map-url/@value"/>
+							<assign var="?interactive-map-cmd" expr="interactive-map-cmd/@value"/>
 							<assign var="?note" expr="note/@value"/>
 						</query>
 						<action>
@@ -129,7 +126,8 @@
 												<button label="Cancel" class="button-dark" flex="1"/>
 											</vbox>
 											<box style="padding-right: 5px" flex="1">
-												<button class="button-dark" flex="1">
+												<button class="button-dark" flex="1"
+																oncommand="?interactive-map-cmd">
 													<image class="whereismycar-map" src="?static-map-url"/>
 												</button>
 											</box>

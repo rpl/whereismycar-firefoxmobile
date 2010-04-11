@@ -21,16 +21,24 @@ Jetpack modules:
 
 * geolocation
 * maps
+* whereismycar-leave
+  * get the whereismycar-leave xul and xml template DOM nodes
+  * run a geolocation request
+  * OK: fill whereismycar-leave template and call a xul template rebuild
+  * ERROR: show an error message
+  * ONLINE: generate a google maps static map url
+  * OFFLINE: show a fallback image
+  * LEAVE_BUTTON: save position
+  * CANCEL_BUTTON: exit without save
 
 Current Step:
 
-* integrate geolocation into leave panel
+* bootstrap maps module
 
 Next Steps:
 
-* bootstrap maps module
 * integrate maps into leave panel
-* integrate geolocation into leave panel
+* integrate geolocation into getdirection panel
 * integrate maps into getdirections panel
 
 Done Steps:
@@ -39,6 +47,7 @@ Done Steps:
 * bootstrap whereismycar-leave panel
 * bootstrap whereismycar-getdirections panel
 * bootstrap geolocation
+* integrate geolocation into leave panel
 
 #### Design
 
