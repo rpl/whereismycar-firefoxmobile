@@ -16,6 +16,15 @@
       <button id="whereismycar-close" class="button-dark" label="&whereismycar.back;" oncommand="Whereismycar.hide();"/>
     </hbox>
     <deck id="whereismycar-deck" flex="1">
+      <vbox id="whereismycar-geowarn" class="whereismycar-panel panel-dark">
+        <description value="&whereismycar.geowarn;" />        
+        <hbox>
+          <button class="button-dark" label="&whereismycar.yes;" 
+									oncommand="Whereismycar.setGeoAllowed();" />
+            <button class="button-dark" label="&whereismycar.no;" 
+										oncommand="Whereismycar.hide();" />          
+        </hbox>
+      </vbox>
       <vbox id="whereismycar-loading" class="whereismycar-panel panel-dark">
         <hbox class="whereismycar-panel">
           <image id="whereismycar-throbber" />

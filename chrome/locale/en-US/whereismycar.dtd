@@ -1,5 +1,9 @@
 <!ENTITY whereismycar.name                             "Where Is My Car?">
+<!ENTITY whereismycar.geowarn                          "Allow '&whereismycar.name;' to access your GPS?">
 <!ENTITY whereismycar.label                            "&whereismycar.name;">
 <!ENTITY whereismycar.key                              "s">
 <!ENTITY whereismycar.back                             "Back">
 <!ENTITY whereismycar.loading                          "Loading...">
+<!ENTITY whereismycar.yes                              "Yes">
+<!ENTITY whereismycar.no                               "No">
+
