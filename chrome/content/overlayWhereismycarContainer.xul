@@ -13,6 +13,7 @@
       <image id="whereismycar-icon" />
       <label value="&whereismycar.label;" flex="1" />
       <spacer flex="1" />
+      <button id="whereismycar-refresh" class="button-dark" label="Refresh" oncommand="Whereismycar.show();"/>
       <button id="whereismycar-close" class="button-dark" label="&whereismycar.back;" oncommand="Whereismycar.hide();"/>
     </hbox>
     <deck id="whereismycar-deck" flex="1">
@@ -49,10 +50,7 @@
 				<data id="whereismycar-leave-data" xmlns="">
 					<position>
 						<address value=""/>
-						<city value=""/>
-						<country value=""/>
 						<latlong value=""/>
-						<note value=""/>
 						<static-map-url value="chrome://whereismycar/skin/images/loading_map.png"/>
 					</position>
 				</data>
@@ -65,18 +63,13 @@
 						</map>
 						<from>
 							<address value=""/>
-							<city value=""/>
-							<country value=""/>
 							<latlong value=""/>
 							<distance value=""/>
 							<direction value=""/>
 						</from>
 						<to>
 							<address value=""/>
-							<city value=""/>
-							<country value=""/>
 							<latlong value=""/>
-							<note value=""/>
 						</to>
 					</directions>
 				</data>
@@ -90,8 +83,6 @@
 					<template id="template-leave-view">
 						<query expr="position">
 							<assign var="?address" expr="address/@value"/>
-							<assign var="?city" expr="city/@value"/>
-							<assign var="?country" expr="country/@value"/>
 							<assign var="?latlong" expr="latlong/@value"/>
 							<assign var="?static-map-url" expr="static-map-url/@value"/>
 							<assign var="?interactive-map-cmd" expr="interactive-map-cmd/@value"/>
@@ -107,20 +98,12 @@
 									<rows>  
 										<row align="center">  
 											<label value="Address:"/>  
-											<textbox value="?address"/>  
+											<textbox value="?address" multiline="true"/>  
 										</row>  
-										<row align="center">  
-											<label value="City:"/>  
-											<textbox value="?city - ?country"/>  
-										</row>
 										<row align="center">  
 											<label value="Lat-Long:"/>  
 											<textbox value="?latlong"/>  
 										</row>
-										<!--row align="start">  
-											<label value="Note:"/>  
-											<textbox value="?note" multiline="true"/>  
-										</row-->  
 									</rows>
 								</grid>  
 								<grid class="whereismycar-leave-buttons-grid" flex="1">
@@ -149,16 +132,11 @@
 					<template id="template-getdirections-view">
 						<query expr="directions">
 							<assign var="?from-address" expr="from/address/@value"/>
-							<assign var="?from-city" expr="from/city/@value"/>
-							<assign var="?from-country" expr="from/country/@value"/>
 							<assign var="?from-latlong" expr="from/latlong/@value"/>
 							<assign var="?from-distance" expr="from/distance/@value"/>
 							<assign var="?from-direction" expr="from/direction/@value"/>
 							<assign var="?to-address" expr="to/address/@value"/>
-							<assign var="?to-city" expr="to/city/@value"/>
-							<assign var="?to-country" expr="to/country/@value"/>
 							<assign var="?to-latlong" expr="to/latlong/@value"/>
-							<assign var="?to-note" expr="to/note/@value"/>
 							<assign var="?static-map-url" expr="map/static-map-url/@value"/>
 							<assign var="?interactive-map-cmd" expr="map/interactive-map-cmd/@value"/>
 							<assign var="?print-directions-cmd" expr="map/print-directions-cmd/@value"/>
@@ -182,12 +160,8 @@
 													<rows>
 														<row align="center">  
 															<label value="Address:"/>  
-															<textbox value="?from-address"/>  
+															<textbox value="?from-address" multiline="true"/>  
 														</row>  
-														<row align="center">  
-															<label value="City:"/>  
-															<textbox value="?from-city - ?from-country"/>  
-														</row>
 														<row align="center">  
 															<label value="Lat-Long:"/>  
 															<textbox value="?from-latlong"/>  
@@ -209,12 +183,8 @@
 													<rows>
 														<row align="center">  
 															<label value="Address:"/>  
-															<textbox value="?to-address"/>  
+															<textbox value="?to-address" multiline="true"/>  
 														</row>  
-														<row align="center">  
-															<label value="City:"/>  
-															<textbox value="?to-city - ?to-country"/>  
-														</row>
 														<row align="center">  
 															<label value="Lat-Long:"/>  
 															<textbox value="?to-latlong"/>  
@@ -223,10 +193,6 @@
 															<label value="Direction:"/>  
 															<textbox value="?from-direction"/>  
 														</row>
-														<!--row align="start">  
-															<label value="Note:"/>  
-															<textbox value="?to-note" multiline="true"/>  
-														</row-->
 													</rows>
 												</grid>
 											</groupbox>
